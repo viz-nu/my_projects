@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clock</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="description"
+    content="clock for promodoro, custom timer, stopclock and live time in Hyderabad ">
+    <meta name="keywords" content="time managememt, timer, promodoro, stopclock">
+<meta name="author" content="Viz">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<meta property="og:image" content="images/logo.png" />
+</head>
+<body>
+    <center>
+        <section class="intro">
+            <h1>welcome to clock site</h1>
+            <h1 >the current time is : <span id="current-time">
+            </span> </h1>
+         </section>
+         <button onclick="location.replace(`stopclock.html`)">stopclock</button>
+         <button onclick="location.replace(`timer.html`)">timer</button>
+         <button onclick="location.replace('alarm.html')">alarm</button>
+         <button onclick="location.replace('promodoro.html')">promodoro</button>
+    </center>
+</body>
+<script>
+
+let crtime=setInterval(() => {
+    document.getElementById("current-time").innerText = time()
+}, 1000);
+function time(){
+    var currentdate = new Date();
+ return currentdate.getHours() + ":" 
++ currentdate.getMinutes() + ":" + currentdate.getSeconds();
+}
+
+
+
+</script>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="images/favico.ico" type="image/x-icon">
+    <meta property="og:image" content="images/logo.png" />
+    <meta name="description"
+    content="Strong Password Generator Tool - Use this free strong password generator tool to create highly secure passwords that are difficult to crack or guess.">
+<meta name="keywords" content="Security, Password Generator">
+<meta name="author" content="Viz">
+</head>
+<body>
+  <center>
+    <section class="container">
+      <div >
+        <img src="images/logo.png" height="100"><h1>Strong Password Generator</h1>
+        <hr >
+      </div>
+      
+      <div class="form">
+          <form onsubmit="objectgen(event)">
+            <div>
+              <label for="">Choose the Password Length (between 6 to 30): <span id="len">  </span></label> 
+              <input type="range" min="6" max="30" id="password-length" name="password-length" oninput="dummy();">
+
+            </div>
+            <div><label for="">Do you want to include Symbols :</label>
+              <input type="checkbox" id="symbols" name="symbols">
+            </div>
+            <div>
+              <label for="">Do you want to include Uppercase Characters :</label>
+              <input type="checkbox" id="Uppercase" name="Uppercase">
+            </div>
+            <div>
+              <label for="">Do you want to include Lowercase Characters :</label>
+              <input type="checkbox" id="Lowercase" name="Lowercase">
+            </div>
+            <div>
+              <label for="">Do you want to include Digits :</label>
+              <input type="checkbox" id="Digits" name="Digits">
+            </div>
+            <div>
+              <label for="">Do you want to exclude Duplicates  :</label>
+              <input type="checkbox" id="Duplicates" name="Duplicates">
+            </div>
+            <div>
+              <label for="">Do you want to exclude Ambiguous Characters  :</label>
+              <input type="checkbox" id="Ambiguous" name="Ambiguous">
+            </div>
+            <div>
+              <button id="button">Submit</button>
+            </div>
+            <div>
+              <textarea name="comments" id="textarea" cols="30" rows="10" onclick=copy()></textarea>
+            </div>
+          </form>
+  
+      </div>
+    </section>  
+  </center>
+  
+  
+</body>
+<script src="psswd.js"></script>
+
+</html>

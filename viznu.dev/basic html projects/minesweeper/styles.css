@@ -1,0 +1,14 @@
+td,
+        th {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+button{
+    color: green;
+    width: 40px;
+    cursor: pointer;
+    height: 40px;
+    background-color: greenyellow;
+}
+

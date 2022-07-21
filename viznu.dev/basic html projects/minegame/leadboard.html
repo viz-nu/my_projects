@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>leadboard</title>
+</head>
+<body>
+    <h1>welcome to leaderbord</h1>
+    <table id="leardboard">
+        <thead>
+            <th>Rank</th>
+            <th>attempts</th>
+            <th>player</th>
+        </thead>
+        <tbody id="myboard">
+
+        </tbody>
+    </table>
+</body>
+<script >
+    let winnerdata= localStorage.getItem("winners")
+    winnerdata=winnerdata.flat().sort((a,b)=>a.attempts-b.attempts)
+console.log(winnerdata)
+const newwinner=[]
+let temp=[]
+temp.push(winnerdata[0])
+
+for (let i = 1; i < winnerdata.length; i++) {
+    if(winnerdata[i].attempts==winnerdata[i-1].attempts){
+        temp.push(winnerdata[i])
+    }
+    else{
+        newwinner.push(temp)
+        temp=[]
+        temp.push(winnerdata[i])
+    }
+}
+newwinner.push(temp)
+for (let i = 0; i < newwinner.length; i++) {
+    row=document.createElement("tr")
+    for (let j=0;j<3;j++){
+
+    }
+    
+}
+
+
+
+
+    
+</script>
+</html>

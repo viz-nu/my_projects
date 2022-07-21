@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>timer</title>
+    <meta name="author" content="Viz">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <meta property="og:image" content="images/logo.png" />
+</head>
+
+<body>
+    <center>
+
+        <h3>
+            <label for="min">Choose minutes</label>
+            <select id="0" oninput="trigger1()">
+                <option value=""> Minutes</option>
+            </select>
+            <label for="sec">Choose seconds</label>
+            <select id="1" oninput="trigger2()">
+                <option value=""> Seconds</option>
+            </select>
+        </h3>
+
+        <h1 style="font-size: 100px;"> <span id="mn">00</span><sub>mm</sub><span id="ss">00</span> <sub>ss</sub>
+        </h1>
+
+        <button onclick="start()">Start</button>
+        <button onclick="location.reload()">Reset</button>
+    </center>
+</body>
+<script>
+    function trigger1() {
+        let minutes = document.getElementById(`${0}`).value
+        if (minutes < 10) { minutes = "0" + (+minutes); }
+        document.getElementById('mn').innerText = minutes;
+    }
+
+    function trigger2() {
+        let seconds = document.getElementById(`${1}`).value
+
+        if (seconds < 10) { seconds = "0" + (+seconds); }
+        document.getElementById("ss").innerText = seconds;
+    }
+    let child, parent;
+    for (let j = 0; j < 2; j++) {
+        parent = document.getElementById(`${j}`)
+        for (let i = 0; i < 60; i++) {
+            child = document.createElement("option")
+            child.innerText = i;
+            child.value = i;
+            parent.appendChild(child)
+        }
+    }
+
+    const time = new Audio("tim.mp3")
+
+    function start() {
+        let minutes = +(document.getElementById('mn').innerText)
+        let seconds = +(document.getElementById("ss").innerText)
+
+        let timer = setInterval(() => {
+            if (minutes < 10) { minutes = "0" + (+minutes); }
+            if (seconds < 10) { seconds = "0" + (+seconds); }
+
+            if (seconds == 0) {
+                minutes--
+                seconds = 60
+                if ((+minutes) < 0) {
+                    clearInterval(timer)
+                    time.play();
+                }
+            }
+            document.getElementById('mn').innerText = minutes;
+            document.getElementById("ss").innerText = --seconds;
+            if (seconds == 0) {
+                minutes--
+                seconds = 60
+                if ((+minutes) < 0) {
+                    clearInterval(timer)
+                    time.play();
+                }
+            }
+
+
+        }, 1000);
+    }
+
+    function stop() {
+        clearInterval(timer)
+    }
+
+
+</script>
+
+</html>

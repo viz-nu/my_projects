@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axios Lab1</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        body {
+            background-color: #2d2d2d;
+        }
+
+        table {
+            border: 2px solid coral;
+            margin-top: 5%;
+        }
+
+        th {
+            border: 2px solid #2d2d2d;
+            /* width : 30%; */
+            padding: 10px;
+            background-color: coral;
+        }
+
+        td {
+            border: 1px solid coral;
+            /* width : 30%; */
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <div>
+            <button onclick="changeStatus();"> Task Status</button>
+            <table id="table-data">
+                <thead>
+                    <th>userid</th>
+                    <th>id</th>
+                    <th>title</th>
+                    <th>completed</th>
+                </thead>
+            </table>
+        </div>
+    </center>
+</body>
+<script>
+    var data;
+    var status = false;
+    async function main() {
+        try {
+            const res = await axios.get("https://jsonplaceholder.typicode.com/todos");
+            data = res.data;
+            createTable(data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    main();
+
+
+    function changeStatus() {
+        let completed = data.filter(ele => ele.completed);
+        let nonCompleted = data.filter(ele => !ele.completed);
+
+        let table = document.getElementById("tbody");
+        table.remove();
+        if (status == "false") {
+            status = "";
+        }
+        if (status) {
+            createTable(completed);
+        }
+        else {
+            createTable(nonCompleted);
+        }
+        status = !status;
+    }
+
+
+
+
+
+    function createTable(data) {
+        let table = document.getElementById("table-data");
+        let tbody = document.createElement("tbody");
+        tbody.id = "tbody";
+        let row, col;
+        data.forEach(ele => {
+            row = document.createElement("tr");
+            for (let i = 1; i <= 4; i++) {
+                if (i == 1) {
+                    col = document.createElement("td");
+                    col.innerText = ele.userId;
+                    row.appendChild(col);
+                }
+                if (i == 2) {
+                    col = document.createElement("td");
+                    col.innerText = ele.id;
+                    row.appendChild(col);
+                }
+                if (i == 3) {
+                    col = document.createElement("td");
+                    col.innerText = ele.title;
+                    row.appendChild(col);
+                }
+                if (i == 4) {
+                    col = document.createElement("td");
+                    col.innerText = ele.completed;
+                    row.appendChild(col);
+                }
+            }
+            tbody.appendChild(row);
+        });
+        table.appendChild(tbody);
+    }
+
+</script>
+
+</html>

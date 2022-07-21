@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axios Lab2</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <style>
+        body {
+            background-color: #2d2d2d;
+        }
+
+        table {
+            border: 2px solid coral;
+            margin-top: 5%;
+        }
+
+        th {
+            border: 2px solid #2d2d2d;
+            /* width : 30%; */
+            padding: 10px;
+            background-color: coral;
+        }
+
+        td {
+            border: 1px solid coral;
+            /* width : 30%; */
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+        a {
+            color : white
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <table>
+            <thead>
+                <tr>
+                    <th rowspan="2">id</th>
+                    <th rowspan="2">Name</th>
+                    <th rowspan="2">Username</th>
+                    <th rowspan="2">Email</th>
+                    <th rowspan="2">Address</th>
+                    <th colspan="2">Geo</th>
+                    <th rowspan="2">Phone</th>
+                    <th rowspan="2"> Website</th>
+                    <th rowspan="2"> Company</th>
+                </tr>
+                <tr>
+                    <th>Lat </th>
+                    <th>Lon</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+    </center>
+</body>
+<script>
+    async function main() {
+        try {
+            const { data } = await axios.get("https://jsonplaceholder.typicode.com/users");
+            let row, col;
+            let tbody = document.getElementById("tbody");
+            data.forEach(ele => {
+                row = document.createElement("tr");
+                for (let i = 1; i <= 10; i++) {
+                    if (i == 1) {
+                        td = document.createElement("td");
+                        td.innerText = ele.id;
+                        row.appendChild(td);
+                    }
+                    if (i == 2) {
+                        td = document.createElement("td");
+                        td.innerText = ele.name;
+                        row.appendChild(td);
+                    }
+                    if (i == 3) {
+                        td = document.createElement("td");
+                        td.innerText = ele.username;
+                        row.appendChild(td);
+                    }
+                    if (i == 4) {
+                        td = document.createElement("td");
+                        td.innerText = ele.email;
+                        row.appendChild(td);
+                    }
+                    if (i == 5) {
+                        td = document.createElement("td");
+                        let address = Object.values(ele.address);
+                        let str = "";
+                        for (let j = 0; j < address.length - 1; j++) {
+                            str += address[j] + "<br>";
+                        }
+                        td.innerHTML = str;
+                        row.appendChild(td);
+                    }
+                    if (i == 6) {
+                        td = document.createElement("td");
+                        td.innerText = ele.address.geo.lat;
+                        row.appendChild(td);
+                    }
+                    if (i == 7) {
+                        td = document.createElement("td");
+                        td.innerText = ele.address.geo.lng;
+                        row.appendChild(td);
+                    }
+                    if (i == 8) {
+                        td = document.createElement("td");
+                        td.innerText = ele.phone;
+                        row.appendChild(td);
+                    }
+                    if (i == 9) {
+                        td = document.createElement("td");
+                        td.innerHTML = `<a href='http://${ele.website}' target='_blank'>${ele.website}</a>`;
+                        row.appendChild(td);
+                    }
+                    if (i == 10) {
+                        td = document.createElement("td");
+                        let company = Object.values(ele.company);
+                        let str = "";
+                        for (let j = 0; j < company.length; j++) {
+                            str += company[j] + "<br>";
+                        }
+                        td.innerHTML = str;
+                        row.appendChild(td);
+                    }
+                }
+                tbody.appendChild(row);
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    main();
+</script>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch</title>
+    <meta name="author" content="Viz">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <meta property="og:image" content="images/logo.png" />
+</head>
+
+<body>
+    <center>
+        <h1 style="font-size: 100px;"> <span id="min">00</span> <sub>mm</sub> <span id="sec">00</span> <sub>ss</sub>
+        </h1>
+        <button onclick="start();">Start</button><button onclick="location.reload()">Reset</button>
+    </center>
+</body>
+<script>
+    let minutes = +(document.getElementById('min').innerText)
+    let seconds = +(document.getElementById("sec").innerText)
+
+    function start() {
+        const int = setInterval(() => {
+            startimer();
+            if (minutes < 10) { minutes = "0" + (+minutes) }
+            if (seconds < 10) { seconds = "0" + (+seconds) }
+            document.getElementById('min').innerText = minutes;
+            document.getElementById("sec").innerText = seconds;
+        }, 1000);
+    }
+
+    function startimer() {
+        if (seconds == 59) {
+            seconds = 0
+            ++minutes
+            return seconds
+        }
+        else { ++seconds }
+    }
+
+
+</script>
+
+</html>

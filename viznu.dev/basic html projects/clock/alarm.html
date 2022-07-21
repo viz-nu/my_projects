@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>alarm</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <meta name="description" content="clock for promodoro, custom timer, stopclock and live time in Hyderabad ">
+    <meta name="keywords" content="time managememt, timer, promodoro, stopclock">
+    <meta name="author" content="Viz">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <meta property="og:image" content="images/logo.png" />
+
+</head>
+
+<body>
+    <center>
+        <h1>the current time is : <span id="current-time"></span>
+    </center>
+    <!-- <center>
+        <h1>the current time is : <span id="current-time"></span>
+            <!-- <h3>
+                <label for="hrs">Choose hours</label>
+                <select id="0" oninput="trigger0()">
+                    <option value=""> hours </option>
+                </select>
+                <label for="min">Choose minutes</label>
+                <select id="1" oninput="trigger1()">
+                    <option value=""> Minutes</option>
+                </select>
+                <label for="sec">Choose seconds</label>
+                <select id="2" oninput="trigger2()">
+                    <option value=""> Seconds</option>
+                </select>
+            </h3> -->
+    <!-- <h1 style="font-size: 100px;">
+                <span id="hr">00 </span> <sub>hr</sub>
+                <span id="mn">00 </span> <sub>mm</sub>
+                <span id="ss">00 </span> <sub>ss</sub>
+            </h1>
+            <button onclick="setalarm()">Set Alarm</button>
+            <button onclick="location.reload()">Reload</button>
+            <button onclick="location.replace(`index.html`)">Back to clock</button>
+            <br><br>
+            <hr>
+    </center> -->
+    <center>
+        <div>
+            <form onsubmit="test(event)">
+                <label for="meeting-time">Choose a time for your appointment:</label>
+                <input type="datetime-local" id="alarm-time" name="meeting-time" />
+
+                <p>Please select your ringtone :</p>
+                <select id="tone">
+                    <option value="">select tone</option>
+                    <option value="Rock">Rock</option>
+                    <option value="harsh">harsh</option>
+                    <option value="smooth">smooth</option>
+
+                </select>
+                <input type="submit" value="submit">
+            </form>
+        </div>
+    </center>
+</body>
+<script>
+    const smooth = new Audio("smooth.mp3")
+    const harsh = new Audio("tim.mp3")
+    const rock = new Audio("rock.mp3")
+    function test(event) {
+        event.preventDefault();
+        let a = new Date();
+        let b = new Date(document.getElementById("alarm-time").value);
+
+        setTimeout(() => {
+            if ((document.getElementById("tone").value) == "harsh") {
+                console.log("aa");
+                tim.play()
+            }
+            if ((document.getElementById("tone").value) == "smooth") {
+                smooth.play()
+                console.log("aa");
+            }
+            if ((document.getElementById("tone").value) == "Rock") {
+                rock.play()
+                console.log("aa");
+            }
+        }, (b - a))
+        console.log("alarm rings in :", (b - a) / 1000, "seconds")
+    }
+    let crtime = setInterval(() => {
+        document.getElementById("current-time").innerText = time()
+    }, 1000);
+    function time() {
+        var currentdate = new Date();
+
+        return currentdate.getHours() + ":"
+            + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+    }
+    // let crtime = setInterval(() => {
+    //     document.getElementById("current-time").innerText = time()
+    // }, 1000);
+    // function time() {
+    //     var currentdate = new Date();
+
+    //     return currentdate.getHours() + ":"
+    //         + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+    // }
+    // function trigger0() {
+
+    //     let hours = document.getElementById(`${0}`).value
+
+    //     if (hours < 10) { hours = "0" + (+hours); }
+    //     document.getElementById('hr').innerText = hours;
+
+    // }
+    // function trigger1() {
+    //     let minutes = document.getElementById(`${1}`).value
+    //     if (minutes < 10) { minutes = "0" + (+minutes); }
+    //     document.getElementById('mn').innerText = minutes;
+
+    // }
+    // function trigger2() {
+    //     let seconds = document.getElementById(`${2}`).value
+    //     if (seconds < 10) { seconds = "0" + (+seconds); }
+    //     document.getElementById('ss').innerText = seconds;
+
+    // }
+    // function validtime() {
+    //     let a = time().split(":")
+    //     if (a[0] < document.getElementById('hr').innerText) {
+    //         return true
+    //     }
+    //     else if (a[0] = document.getElementById('hr').innerText) {
+    //         if (a[1] < document.getElementById('mn').innerText) {
+    //             return true
+    //         }
+    //         else if (a[1] = document.getElementById('mn').innerText) {
+    //             if (a[3] < document.getElementById('ss').innerText) {
+    //                 return true
+    //             }
+    //             else { return false }
+    //         }
+    //         else { return false }
+    //     }
+    //     else { return false }
+    // }
+
+    // let child, parent, a;
+    // for (let j = 0; j <= 2; j++) {
+    //     parent = document.getElementById(`${j}`)
+    //     if (j == 0) { a = 24 }
+    //     else { a = 60 }
+    //     for (let i = 0; i < a; i++) {
+    //         child = document.createElement("option")
+    //         child.innerText = i;
+    //         child.value = i;
+    //         parent.appendChild(child)
+    //     }
+    // }
+
+    // function setalarm() {
+    //     let hours = document.getElementById('hr').innerText;
+    //     let seconds = document.getElementById('ss').innerText;
+    //     let minutes = document.getElementById('mn').innerText;
+
+    //     let a = time().split(":")
+    //     if (validtime()) {
+    //         let rhrs = (document.getElementById(0).value) - a[0]
+    //         let rmins = (document.getElementById(1).value) - a[1]
+    //         let rsec = (document.getElementById(2).value) - a[2]
+    //         if (rsec < 0) {
+    //             rmins -= 1
+    //             rsec += 60
+    //         }
+    //         if (rmins < 0) {
+    //             rhrs -= 1
+    //             rmins += 60
+    //         }
+
+
+    //         ringer(rhrs, rmins, rsec);
+    //         alert(`this alarm rings in ${rhrs}hrs:${rmins}mins:${rsec}sec: `)
+
+
+    //     }
+    //     else {
+    //         alert("please enter valid time")
+    //         location.reload('')
+    //     }
+
+    // }
+    //
+    // function ringer(rhrs, rmins, rsec) {
+    //     let a = (3600 * (rhrs) + 60 * (rmins) + (rsec)) * 1000
+    //     console.log(a);
+    //     setTimeout(() => {
+    //         ring.play();
+    //     }, a);
+
+    // }
+
+</script>
+
+</html>

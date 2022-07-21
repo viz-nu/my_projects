@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>HTML Tables</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+    <center>
+        <div>
+            <h1>Welcome <span id="player"></span></h1>
+            <h1>Attempts : <span id="attempts"></span></h1>
+            <table>
+                <tbody id="game">
+
+                </tbody>
+            </table>
+        </div>
+    </center>
+</body>
+<script>
+    if (!localStorage.getItem("winners")) {
+        localStorage.setItem("winners", JSON.stringify([]));
+    }
+    // const playerName = prompt("Enter Player Name : ");
+    const audio = new Audio("audio.mp3");
+    const audio2 = new Audio("audio2.mp3");
+    // let attempts = 0;
+    // document.getElementById("player").innerText = playerName;
+    // const primes = [2, 3, 5, 7, 11, 13];
+    const visitedCells = [];
+    // document.getElementById("attempts").innerText = attempts;
+    // const tableData = new Array(100);
+    // for (let i = 0; i < tableData.length; i++) {
+    //     tableData[i] = i + 1;
+    // }
+
+    //     tableData.sort((a, b) => Math.random() - 0.5);
+
+    // let table = document.getElementById("game");
+    // let row, col, counter = 0;
+    // for (let i = 1; i <= 10; i++) {
+    //     row = document.createElement("tr");
+    //     for (let j = 1; j <= 10; j++) {
+    //         col = document.createElement("td");
+    //         col.id = tableData[counter];
+            col.addEventListener("click", function (event) {
+
+                let clickedNum = event.target.id;
+
+                if (primes.includes(+clickedNum)) {
+                    alert(`You are a looser. Game Over.`);
+                    location.reload("/");
+                } 
+                else if (clickedNum == 1) {     //Check for game win logic
+                    document.getElementById("attempts").innerText = ++attempts;
+                    alert(`You are a Winner with a score : ${attempts}`);
+                    let data = JSON.parse(localStorage.getItem("winners"));
+                    data.push({
+                        playerName,
+                        attempts
+                    });
+                    localStorage.setItem("winners", JSON.stringify(data));
+                    location.replace(`leadboard.html?${playerName}`);
+                } else {
+                    if (visitedCells.includes(+clickedNum)) {
+                        //play diff music
+                        audio2.play();
+                        return alert("Its already visited");
+                    }
+                    audio.play();
+                    document.getElementById("attempts").innerText = ++attempts;
+                    for (let i = clickedNum; i <= 100; i++) {
+                        if (i % clickedNum == 0) {
+                            document.getElementById(i).style.backgroundColor = "#61dafb";
+                            visitedCells.push(+i);
+                        }
+                    }
+                }
+            });
+
+    //         counter++;
+    //         row.appendChild(col);
+    //     }
+    //     table.appendChild(row);
+    // }
+
+
+</script>
+
+</html>
